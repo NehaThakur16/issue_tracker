@@ -1,13 +1,10 @@
 
-var connection = new ActiveXObject("ADODB.Connection");
-  var adoRS = new ActiveXObject("ADODB.Recordset");
 
-  adoConn.Open("Provider=Microsoft.Jet.OLEDB.4.0;Data Source='/home/ashokkhape/Javascript/JSissue-tracker-master/AutomationFactory.odb'");
-  adoRS.Open("Select * From tblName", adoConn, 1, 3);
-
-  adoRS.AddNew;
-  adoRS.Fields("Reporter").value = "Ashok";
-  adoRS.Update;
-
-  adoRS.Close();
-  adoConn.Close();
+var adoConn = new ActiveXObject("ADODB.Connection");
+var adoCmd = new ActiveXObject("ADODB.Command");
+adoConn.Open("Provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:\\Users\\ashokkumar.r.khape\\Desktop\\issue_tracker\\AutomationFactory.mdb'");
+adoCmd.ActiveConnection = adoConn;
+adoCmd.CommandText = "UPDATE Issues SET Status='Open' Where Id=1;";
+adoCmd.Execute();
+adoConn.Close();
+console.log("Done");
