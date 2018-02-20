@@ -3,7 +3,7 @@ document.getElementById('issueInputForm').addEventListener('submit', saveIssue);
 function saveIssue(e) {
   var issueTeam = document.getElementById('issueTeamInput');
   var issueReporter = document.getElementById('issueReporterInput');
-  var  issueSummary = document.getElementById('issueSummaryInput');
+  var issueSummary = document.getElementById('issueSummaryInput');
   var issueDesc = document.getElementById('issueDescInput').value;
   var issueTestData = document.getElementById('issueDataInput').value;
   var issueTestcases = document.getElementById('issueTestcasesInput').value;
@@ -34,12 +34,15 @@ function saveIssue(e) {
     coments: issueComments
   }
 
-  var addQuery = "INSERT INTO Issues ";
+  var addQuery = "INSERT INTO Issues Team, Reporter, Date, Summary, Description, Data, Testcases, Severity, Status, AssignedTo, PlannedEndDate, Comments VALUES " +
+                  issueTeam + ", " + issueReporter + ", " + issueSummary + ", " + issueDesc + ", " + issueTestData + ", " + issueTestcases + ", " + issueSeverity + ", " + issueStatus +
+                  ", " + issueAssignedTo + ", " + issuePlannedDate + ", " + issueComments
+
   var adoConn = new ActiveXObject("ADODB.Connection");
   var adoCmd = new ActiveXObject("ADODB.Command");
   adoConn.Open("Provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:\\Users\\ashokkumar.r.khape\\Desktop\\issue_tracker\\AutomationFactory.mdb'");
   adoCmd.ActiveConnection = adoConn;
-  adoCmd.CommandText = "UPDATE Issues SET Status='Open' Where Id=1;";
+  adoCmd.CommandText = addQuery;
   adoCmd.Execute();
   adoConn.Close();
   console.log("Done");
