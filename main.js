@@ -1,33 +1,18 @@
 document.getElementById('issueInputForm').addEventListener('submit', saveIssue);
 
 function saveIssue(e) {
-  var issueId;
-  var issueTeam = document.getElementById('issueTeamInput');
-  var issueReporter = document.getElementById('issueReporterInput');
-  var  issueSummary = document.getElementById('issueSummaryInput');
   var issueDesc = document.getElementById('issueDescInput').value;
-  var issueTestData = document.getElementById('issueDataInput').value;
-  var issueTestcases = document.getElementById('issueTestcasesInput').value;
   var issueSeverity = document.getElementById('issueSeverityInput').value;
-  var issueStatus = 'Open';
   var issueAssignedTo = document.getElementById('issueAssignedToInput').value;
-  var issuePlannedDate = document.getElementById('issuePlannedDateInput')
-  var issueComments = document.getElementById('issueCommentsInput');
-
+  var issueId = chance.guid();
+  var issueStatus = 'Open';
 
   var issue = {
     id: issueId,
-    team: issueTeam,
-    reporter: issueReporter,
-    summary: issueSummary,
     description: issueDesc,
-    data: issueTestData,
-    testcases: issueTestData.
     severity: issueSeverity,
-    status: issueStatus,
     assignedTo: issueAssignedTo,
-    date: issuePlannedDate,
-    coments: issueComments
+    status: issueStatus
   }
 
   if (localStorage.getItem('issues') == null) {
